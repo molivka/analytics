@@ -57,7 +57,7 @@ def mutebaeva_report_dag():
                 countIf(action='view') as views, 
                 countIf(action='like') as likes, 
                 countIf(action='like') / countIf(action='view') as CTR
-            from simulator_20240420.feed_actions
+            from {db}.feed_actions
             where toDate(time) between yesterday() - 7 and yesterday()
             group by date
         """
@@ -77,7 +77,7 @@ def mutebaeva_report_dag():
                 countIf(action='view') as views, 
                 countIf(action='like') as likes, 
                 round(countIf(action='like') / countIf(action='view'), 4) as CTR
-            from simulator_20240420.feed_actions
+            from {db}.feed_actions
             where toDate(time) = yesterday()
             group by date
         """
